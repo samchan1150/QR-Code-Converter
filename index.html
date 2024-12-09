@@ -3,50 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>QR Code Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #qrcode {
-            margin-top: 20px;
-        }
-        input[type="text"] {
-            width: 300px;
-            padding: 5px;
-        }
-        button {
-            padding: 5px 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <h1>QR Code Converter</h1>
     <p>Enter a link to generate its QR code:</p>
     <input type="text" id="linkInput" placeholder="Enter link here" />
+
+    <p>Select Error Correction Level:</p>
+    <select id="correctionLevel">
+        <option value="L">L - Low (7% damage can be restored)</option>
+        <option value="M" selected>M - Medium (15% damage can be restored)</option>
+        <option value="Q">Q - Quartile (25% damage can be restored)</option>
+        <option value="H">H - High (30% damage can be restored)</option>
+    </select>
+
     <button id="generateBtn">Generate QR Code</button>
+    <button id="downloadBtn" disabled>Download QR Code</button>
 
     <div id="qrcode"></div>
 
-    <!-- Include the QRCode.js library -->
+    <!-- Include the QRCode library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script>
-        const generateBtn = document.getElementById('generateBtn');
-        const linkInput = document.getElementById('linkInput');
-        const qrcodeContainer = document.getElementById('qrcode');
-
-        generateBtn.addEventListener('click', () => {
-            const link = linkInput.value;
-            if (link.trim() === '') {
-                alert('Please enter a link.');
-                return;
-            }
-            // Clear previous QR code
-            qrcodeContainer.innerHTML = '';
-            // Generate new QR code
-            new QRCode(qrcodeContainer, link);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
