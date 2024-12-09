@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #qrcode {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>QR Code Converter</h1>
+    <p>Enter a link to generate its QR code:</p>
+    <input type="text" id="linkInput" placeholder="Enter link here" />
+    <button id="generateBtn">Generate QR Code</button>
+
+    <div id="qrcode"></div>
+
+    <!-- Include the QRCode.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const linkInput = document.getElementById('linkInput');
+        const qrcodeContainer = document.getElementById('qrcode');
+
+        generateBtn.addEventListener('click', () => {
+            const link = linkInput.value;
+            if (link.trim() === '') {
+                alert('Please enter a link.');
+                return;
+            }
+            // Clear previous QR code
+            qrcodeContainer.innerHTML = '';
+            // Generate new QR code
+            new QRCode(qrcodeContainer, link);
+        });
+    </script>
+</body>
+</html>
